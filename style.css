@@ -1,4 +1,6 @@
- body {
+<style>
+   
+    body {
       margin: 0;
       font-family: sans-serif;
     }
@@ -130,6 +132,26 @@
   gap: 1rem;
   padding: 1rem;
 }
+.meal-detail {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.meal-detail img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.meal-detail ul {
+  list-style: none;
+  padding: 0;
+}
+.meal-detail li {
+  margin-bottom: 5px;
+}
+
 
 
 @media (max-width: 992px) {
@@ -153,3 +175,5 @@
     width: 100%;
   }
 }
+
+  </style>
