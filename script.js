@@ -1,4 +1,5 @@
- <script>
+
+  <script>
     const apiBase = "https://www.themealdb.com/api/json/v1/1";
 
     const searchBtn = document.getElementById("search-btn");
@@ -13,7 +14,7 @@ menuToggle.onclick = () => {
   const isOpen = !sidebar.classList.contains("hidden");
   sidebar.classList.toggle("hidden");
 
-  // Toggle icon
+  
   menuToggle.textContent = isOpen ? "☰" : "✖";
 };
 
@@ -33,6 +34,8 @@ menuToggle.onclick = () => {
     searchBtn.onclick = () => {
   const query = searchInput.value.trim();
   if (!query) return;
+
+
 
   
   fetch(`${apiBase}/search.php?s=${query}`)
@@ -68,14 +71,48 @@ menuToggle.onclick = () => {
         });
     }
 
+   
     function displayMeals(meals) {
-      mealsContainer.innerHTML = meals.map(meal => `
-        <div class="card">
+  mealsContainer.innerHTML = meals.map(meal => `
+    <div class="card" onclick="showMealDetail(${meal.idMeal})">
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+      <h4>${meal.strMeal}</h4>
+    </div>
+  `).join("");
+}
+function showMealDetail(id) {
+  fetch(`${apiBase}/lookup.php?i=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      const meal = data.meals[0];
+      const ingredients = [];
+
+      for (let i = 1; i <= 20; i++) {
+        const ing = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+        if (ing && ing.trim()) {
+          ingredients.push(`${measure} ${ing}`);
+        }
+      }
+
+      mealsContainer.innerHTML = `
+        <div class="meal-detail">
+          <h2>${meal.strMeal}</h2>
           <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-          <h4>${meal.strMeal}</h4>
+          <p><strong>Category:</strong> ${meal.strCategory}</p>
+          <p><strong>Area:</strong> ${meal.strArea}</p>
+          <p><strong>Tags:</strong> ${meal.strTags ? meal.strTags : 'None'}</p>
+          <h3>Ingredients:</h3>
+          <ul>${ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
+          <h3>Instructions:</h3>
+          <p>${meal.strInstructions}</p>
+          <a href="${meal.strYoutube}" target="_blank">📺 Watch on YouTube</a>
         </div>
-      `).join("");
-    }
+      `;
+    });
+}
+
+
 
     function fetchCategories() {
       fetch(`${apiBase}/categories.php`)
