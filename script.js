@@ -51,7 +51,7 @@ menuToggle.onclick = () => {
             if (data.meals) {
               displayMeals(data.meals);
             } else {
-              mealsContainer.innerHTML = "<p>No results found 😕</p>";
+              mealsContainer.innerHTML = "<p>No results found </p>";
             }
           });
       }
@@ -64,7 +64,7 @@ menuToggle.onclick = () => {
         .then(res => res.json())
         .then(data => {
           if (!data.meals) {
-            mealsContainer.innerHTML = "<p>No meals found 😕</p>";
+            mealsContainer.innerHTML = "<p>No meals found </p>";
           } else {
             displayMeals(data.meals);
           }
