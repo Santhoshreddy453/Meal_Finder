@@ -1,0 +1,93 @@
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+header {
+  background: #e85d04;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.menu-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: white;
+  height: 100%;
+  width: 200px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.sidebar.hidden {
+  display: none;
+}
+.sidebar span {
+  display: block;
+  text-align: right;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin: 0.5rem 0;
+}
+.hero {
+  text-align: center;
+  padding: 2rem;
+  background: url('https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg') center/cover;
+  color: white;
+}
+.search-box {
+  margin-top: 1rem;
+}
+.search-box input {
+  padding: 0.5rem;
+  width: 200px;
+}
+.search-box button {
+  padding: 0.5rem;
+}
+h2 {
+  text-align: center;
+  margin-top: 2rem;
+  color: #333;
+}
+.categories-grid,
+.meals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+.card h4 {
+  padding: 0.5rem;
+  margin: 0;
+}
